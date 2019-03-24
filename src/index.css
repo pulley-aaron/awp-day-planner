@@ -12,3 +12,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.schedule-page {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.date-picker {
+    display: flex;
+    flex: 0 1 auto;
+}
+
+.date-display {
+    background: #61dafb;
+    flex: 1 1 auto;
+}
+
+.date-select {
+    background: #ffe87c;
+    flex: 1 1 auto;
+}
+
+.schedule {
+    flex: 1 1 auto;
+    background: #bbbbbb;
+    padding: 2em;
+}
