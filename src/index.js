@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import DateDisplay from ./filehere.txt;
+//import DateDisplay from ./filehere.txt; //One component per file
 
 class DateDisplay extends React.Component {
     render() {
