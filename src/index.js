@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+//import DateDisplay from ./filehere.txt;
 
 class DateDisplay extends React.Component {
     render() {
