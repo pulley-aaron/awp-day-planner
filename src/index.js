@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment'
 import './index.css';
 //import DateDisplay from ./filehere.txt; //One component per file
 
 class DateDisplay extends React.Component {
     render() {
+        var date = this.props.currDate;
         return (
             <div className="date-display">
-                {this.props.dayName(this.props.currDate)}<br />
-                {this.props.currDate.getDate()}<br />
-                {this.props.monthName(this.props.currDate)} {this.props.currDate.getFullYear()}
+                <div className="date-display__day-name">{moment(date).format('dddd')}</div>
+                <div className="date-display__day-num">{moment(date).format('DD')}</div>
+                <div className="date-display__month-year">{moment(date).format('MMMM YYYY')}</div>
             </div>
         );
     }
