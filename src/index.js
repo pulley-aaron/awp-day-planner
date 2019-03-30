@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment'
+import Calendar from 'react-calendar'
 import './index.css';
 //import DateDisplay from ./filehere.txt; //One component per file
 
@@ -43,13 +44,14 @@ class App extends React.Component {
                 <div className="schedule-page">
                     <header className="date-picker">
                         <DateDisplay
+                            className="date-display"
                             currDate={this.state.currDate}
                             dayName={(dateObj) => this.dayName(dateObj)}
                             monthName={(dateObj) => this.monthName(dateObj)}
                         />
-                        <div className="date-select">
-                            Select date
-                        </div>
+                        <Calendar 
+                            className="date-select"
+                        />
                     </header>
                     <main className="schedule">
                         Schedule items
