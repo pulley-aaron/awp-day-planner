@@ -18,7 +18,7 @@ Schedule Page
     margin: 0 auto;
     height: 100vh;
     width: 100vw;
-    max-width: 500px; /*design looks funny over this size, responsive later*/
+    max-width: 500px; /*design looks funny over this size, do responsive later*/
 }
 
 /*--- Date Picker ---*/
@@ -36,6 +36,10 @@ Schedule Page
 
 .date-display {
     background: #61dafb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
 
 .date-display__day-num {
