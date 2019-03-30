@@ -27,7 +27,7 @@ class App extends React.Component {
     }
     
     setDate(dateObj) {
-        this.setState((state, props) => {return {currDate: dateObj}});
+        this.setState((state, props) => ({currDate: dateObj}));
     }
     
     render() {
