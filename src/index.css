@@ -58,7 +58,7 @@ Schedule Page
 
 /*--- Agenda ---*/
 
-.agenda {
+.agenda { /* still not full-width for small screens! get that! */
     flex: 1 1 auto;
     background: #bbbbbb;
     padding: 2em;
