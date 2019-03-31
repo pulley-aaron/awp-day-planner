@@ -1,22 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import moment from 'moment'
-import Calendar from 'react-calendar'
 import './index.css';
-//import DateDisplay from ./filehere.txt; //One component per file
-
-class DateDisplay extends React.Component {
-    render() {
-        var date = this.props.currDate;
-        return (
-            <div className="date-display">
-                <div className="date-display__day-name">{moment(date).format('dddd')}</div>
-                <div className="date-display__day-num">{moment(date).format('D')}</div>
-                <div className="date-display__month-year">{moment(date).format('MMMM YYYY')}</div>
-            </div>
-        );
-    }
-};
+import moment from 'moment';
+import Calendar from 'react-calendar';
+import DateDisplay from './date-display.js';
+import Agenda from './agenda.js';
 
 class App extends React.Component {
     constructor (props) {
@@ -34,9 +22,8 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="schedule-page">
-                    <header className="date-picker">
+                    <header className="date-header">
                         <DateDisplay
-                            className="date-display"
                             currDate={this.state.currDate}
                         />
                         <Calendar 
@@ -46,9 +33,9 @@ class App extends React.Component {
                             onChange={(dateObj) => this.setDate(dateObj)}
                         />
                     </header>
-                    <main className="schedule">
-                        Schedule items
-                    </main>
+                    <Agenda
+                        currDate={this.state.currDate}
+                    />
                 </div>
             </div>
         );
