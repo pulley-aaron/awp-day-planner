@@ -12,6 +12,8 @@ class App extends React.Component {
         this.state = {
             currDate: new Date()
         };
+        
+        this.setDate = this.setDate.bind(this);
     }
     
     setDate(dateObj) {

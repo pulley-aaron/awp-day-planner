@@ -62,7 +62,7 @@ Schedule Page
     flex: 1 1 auto;
     background: #bbbbbb;
     padding: 2em;
-    /*overflow-y: scroll;*/
+    overflow-y: scroll;
 }
 
 .add-agenda-item, .agenda-item {
@@ -87,15 +87,40 @@ Schedule Page
 
 .agenda-item {
     background: white;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 1.5em;
+    padding-top: 0.25em;
 }
 
 .agenda-item > * {
-    padding-top: 0.5em;
+    margin-top: 0.5em;
 }
-.agenda-item > *:first-child {
-    padding-top: 0em;
+
+.agenda-item > .description {
+    flex-basis: 100%;
+}
+
+.agenda-item > button {
+    margin-top: 1em;
+}
+
+p.input-label {
+    margin: 0;
+    font-size: 0.7em;
+}
+
+.start-time, .end-time {
+    display: inline-block;
+    flex-basis: 45%;
+}
+
+.time-input, .description-input {
+    width: 100%;
+}
+
+.delete-button {
+    background: #ff6666;
 }
 
 /*--- /Agenda ---*/
