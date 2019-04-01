@@ -10,6 +10,10 @@ class AgendaItem extends React.Component {
         
         this.commitChanges = this.commitChanges.bind(this);
         this.beginEditing = this.beginEditing.bind(this);
+        
+        this.startRef = React.createRef();
+        this.endRef = React.createRef();
+        this.descriptionRef = React.createRef();
     }
     
     beginEditing(e) {
@@ -19,6 +23,20 @@ class AgendaItem extends React.Component {
     
     commitChanges(e) {
         e.preventDefault();
+        
+        // Update main data storage
+        var yearStr = this.props.start.format("YYYY-MM-DD");
+        
+        var newStartStr = this.startRef.current.value;
+        var newStart = moment(yearStr + " " + newStartStr, "YYYY-MM-DD h:mm a");
+        var newEndStr = this.endRef.current.value;
+        var newEnd = moment(yearStr + " " + newEndStr, "YYYY-MM-DD h:mm a");
+        
+        var newDesc = this.descriptionRef.current.value;
+        
+        this.props.onChange(newStart, newEnd, newDesc);
+        
+        // Stop editing
         this.setState((state, props) => ({editing: 0}));
     }
 
@@ -36,6 +54,7 @@ class AgendaItem extends React.Component {
                             className="time-input" 
                             defaultValue={startTime} 
                             type="text"
+                            ref={this.startRef}
                         ></input>
                     </div>
                     <div className="end-time">
@@ -44,6 +63,7 @@ class AgendaItem extends React.Component {
                             className="time-input" 
                             defaultValue={endTime} 
                             type="text"
+                            ref={this.endRef}
                         ></input>
                     </div>
                     <div className="description">
@@ -53,15 +73,18 @@ class AgendaItem extends React.Component {
                             className="description-input" 
                             defaultValue={desc} 
                             type="text"
+                            ref={this.descriptionRef}
                         ></textarea>
                     </div>
                     <button 
                         className="delete-button" 
                     >Delete</button>
-                    <button 
+                    <input
+                        type="submit"
+                        value={"Done " + this.state.editing}
                         className="done-button"
                         onClick={this.commitChanges}
-                    >Done {this.state.editing}</button>
+                    ></input>
                 </form>
             );
         } else {
