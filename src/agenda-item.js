@@ -5,11 +5,11 @@ class AgendaItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editing: 1
+            editing: (this.props.new === 1) ? 1 : 0
         };
-        
         this.commitChanges = this.commitChanges.bind(this);
         this.beginEditing = this.beginEditing.bind(this);
+        this.deleteSelf = this.deleteSelf.bind(this);
         
         this.startRef = React.createRef();
         this.endRef = React.createRef();
@@ -34,10 +34,14 @@ class AgendaItem extends React.Component {
         
         var newDesc = this.descriptionRef.current.value;
         
-        this.props.onChange(newStart, newEnd, newDesc);
+        this.props.update(newStart, newEnd, newDesc);
         
         // Stop editing
         this.setState((state, props) => ({editing: 0}));
+    }
+    
+    deleteSelf() {
+        this.props.delete(this.props.id);
     }
 
     render() {
@@ -77,11 +81,12 @@ class AgendaItem extends React.Component {
                         ></textarea>
                     </div>
                     <button 
-                        className="delete-button" 
+                        className="delete-button"
+                        onClick={this.deleteSelf}
                     >Delete</button>
                     <input
                         type="submit"
-                        value={"Done " + this.state.editing}
+                        value={"Done"}
                         className="done-button"
                         onClick={this.commitChanges}
                     ></input>
@@ -94,7 +99,7 @@ class AgendaItem extends React.Component {
                     <button 
                         className="edit-button"
                         onClick={this.beginEditing}
-                    >Edit {this.state.editing}</button>
+                    >Edit</button>
                     <div className="description">{this.props.description}</div>
                 </div>
             );
