@@ -1,73 +1,108 @@
 import moment from 'moment';
 
 class Model {
-    Model(storageName) {
+    constructor(storageName) {
         this.storageName = storageName;
-        this.storage = [];
+        /* Day data follows format:
+         * {
+         *      date: (string "YYYY-MM-DD"),
+         *      agenda: [(agenda items)]
+         * }
+         *
+         * Agenda items follow format:
+         * {
+         *      id: (string),  // This is for use as key
+         *      start: (string moment.format()),
+         *      end: (string moment.format()),
+         *      description: (string),
+         *      new: (bool)
+         * }
+         */
+        this.storage = [  // Default for demo
+            {
+                date: moment().hour(0).minute(0).second(0).format("YYYY-MM-DD"), // Demo always today
+                agenda: [
+                    {
+                        id: "demo0",
+                        start: moment().hour(1).minute(30),
+                        end: moment().hour(2).minute(0),
+                        description: "Lunch with Leroy.",
+                        new: 0
+                    },
+                    {
+                        id: "demo1",
+                        start: moment().hour(20).minute(30),
+                        end: moment().hour(22).minute(0),
+                        description: "Buy another cat.",
+                        new: 0
+                    },
+                    {
+                        id: "demo2",
+                        start: moment().hour(4).minute(30),
+                        end: moment().hour(5).minute(0),
+                        description: "Paint the turtle's tank. And also the turtle's log. And also the turtle.",
+                        new: 0
+                    },
+                    {
+                        id: "demo3",
+                        start: moment().hour(8).minute(30),
+                        end: moment().hour(9).minute(0),
+                        description: "Breakfast.",
+                        new: 0
+                    }
+                ]
+            }
+        ]
         
-        // Load storage exists, else initialize
+        // Load real storage instead of demo if exists
         var local = localStorage.getItem(storageName);
         if(local !== null) {
             this.storage = JSON.parse(local);
-        } else {
-            localStorage.setItem(this.storageName, JSON.stringify(this.storage));
         }
     }
     
-    /* Day data follows format:
-     * {
-     *      date: [moment].hour(0).minute(0).second(0),
-     *      agenda: [agenda items]
-     * }
-     *
-     * Agenda items follow format:
-     * {
-     *      id: [string],
-     *      start: [moment],
-     *      end: [moment],
-     *      description: [string],
-     *      new: [bool]
-     * }
-     */
-    
-    getAgendaForDay(date) {
-        this.storage = JSON.parse(localStorage.getItem(this.storageName));
-            alert(JSON.stringify(this.storage) + " storage");
-        
+    getDataForDay(date) {
         // Find day
-        var dayData = this.storage.find((i) => {
-            return i.date.format("YYYY-MM-DD") === date.format("YYYY-MM-DD");
+        const dayToFind = date.format("YYYY-MM-DD");
+        const dayData = this.storage.find((i) => {
+            return i.date === dayToFind;
         });
         
-        // If no date exists, return empty stub. We'll save it if later filled and submitted. 
-        if(dayData === null) {
-            return [];
-        } else {
+        return dayData;
+    }
+    
+    getAgendaForDay(date) {
+        // Find day
+        const dayData = this.getDataForDay(date);
+        
+        // If no date exists, return empty stub. We'll save it if it's later filled and submitted. 
+        if(dayData) {
             return dayData.agenda;
+        } else {
+            return [];
         }
     }
     
     setAgendaForDay(date, newAgenda) {
-        this.storage = JSON.parse(localStorage.getItem(this.storageName));
-        var storageUpdate = this.storage.slice();
+        // Find day
+        let dayData = this.getDataForDay(date);
         
-        // Find day to edit
-        var dayData = storageUpdate.find((i) => {
-            return i.date.format("YYYY-MM-DD") === date.format("YYYY-MM-DD");
-        });
-        if(!dayData) {  // If there is no day, create one
+        // If there is no day, create one
+        if(!dayData) { 
             dayData = {
-                date: date.hour(0).minute(0).second(0),
+                date: date.hour(0).minute(0).second(0).format("YYYY-MM-DD"),
                 agenda: []
             };
-            storageUpdate.push(dayData);
+            
+            // Add to storage
+            this.storage.push(dayData);
         }
         
         // Set agenda
-        dayData.aganda = newAgenda;
+        dayData.agenda = newAgenda;
         
         // Store
-        localStorage.setItem(this.storageName, JSON.stringify(storageUpdate));
+        localStorage.setItem(this.storageName, JSON.stringify(this.storage));
     }
 };
 

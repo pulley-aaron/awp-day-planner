@@ -46,12 +46,12 @@ class AgendaItem extends React.Component {
 
     render() {
         if(this.state.editing) {
-            var startTime = (this.props.start && !(this.props.start.format('h:mm a') === "Invalid date")) ? this.props.start.format('h:mm a') : "";
-            var endTime = (this.props.end && !(this.props.end.format('h:mm a') === "Invalid date")) ? this.props.end.format('h:mm a') : "";
+            var startTime = (this.props.start && !(moment(this.props.start).format('h:mm a') === "Invalid date")) ? moment(this.props.start).format('h:mm a') : "";
+            var endTime = (this.props.end && !(moment(this.props.end).format('h:mm a') === "Invalid date")) ? moment(this.props.end).format('h:mm a') : "";
             var desc = (this.props.description) ? this.props.description : "";
             
             return (  // Edit form
-                <form key={this.props.id} className="agenda-item editing">
+                <form className="agenda-item editing">
                     <div className="start-time">
                         <p className="input-label">Start Time</p>
                         <input 
@@ -94,8 +94,8 @@ class AgendaItem extends React.Component {
             );
         } else {
             return (  // Item display
-                <div key={this.props.id} className="agenda-item">
-                    <div className="time-slot">{this.props.start.format('h:mm a')} - {this.props.end.format('h:mm a')}</div>
+                <div className="agenda-item">
+                    <div className="time-slot">{moment(this.props.start).format('h:mm a')} - {moment(this.props.end).format('h:mm a')}</div>
                     <button 
                         className="edit-button"
                         onClick={this.beginEditing}
