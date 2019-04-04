@@ -45,6 +45,13 @@ class Model {
                     },
                     {
                         id: "demo3",
+                        start: moment().hour(18).minute(0).format(),
+                        end: moment().hour(19).minute(0).format(),
+                        description: "Dinner alone, again.",
+                        new: 0
+                    },
+                    {
+                        id: "demo4",
                         start: moment().hour(20).minute(30).format(),
                         end: moment().hour(22).minute(0).format(),
                         description: "Buy another cat.",

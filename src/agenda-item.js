@@ -7,6 +7,7 @@ class AgendaItem extends React.Component {
         this.state = {
             editing: (this.props.new === 1) ? 1 : 0
         };
+        
         this.commitChanges = this.commitChanges.bind(this);
         this.beginEditing = this.beginEditing.bind(this);
         this.deleteSelf = this.deleteSelf.bind(this);

@@ -1,3 +1,5 @@
+@import "https://use.fontawesome.com/releases/v5.8.1/css/all.css";
+
 * {
     box-sizing: border-box;
 }
@@ -10,10 +12,6 @@ body, .app {  /* customize later */
                 sans-serif;
 }
 
-/*-----------
-Schedule Page
------------*/
-
 .schedule-page {
     display: flex;
     flex-flow: column;
@@ -25,32 +23,42 @@ Schedule Page
 
 /*--- Date Picker ---*/
 
-.date-header {
-    display: flex;
-    flex: 0 0 auto;
+.date-display, .date-select {
+    padding: 0.6em;
 }
 
-.date-display, .date-select {
-    flex: 1 1 50%;
-    padding: 0.6em;
-    text-align: center;
+.date-header {
+    position: fixed;
+    width: 100%;
 }
 
 .date-header .date-display {
     background: #61dafb;
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: center;
-    align-content: center;
-    flex-direction: column;
-}
-
-.date-display__day-num {
-    font-size: 3em;
-    line-height: 1em;
 }
 
 .date-header .date-select {
     background: #ffe87c;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    transform: translateY(-100%);
+    transition: all 0.5s;
+}
+.date-header .date-select.extended {
+    transform: translateY(0%);
+}
+
+.drop-down-arrow {
+    padding: 0 0.5em;
+    transform: translateY(0.2em);
+    transition: all 0.5s;
+}
+.extended .drop-down-arrow {
+    transform: rotateZ(-180deg);
 }
 
 /*--- /Date Picker ---*/
@@ -58,10 +66,11 @@ Schedule Page
 
 /*--- Agenda ---*/
 
-.agenda { /* still not full-width for small screens! get that! */
+.agenda { /* still not full-width for small screens! get that done! */
     flex: 1 1 auto;
     background: #bbbbbb;
     padding: 2em;
+    padding-top: 4.5em;
     overflow-y: scroll;
 }
 

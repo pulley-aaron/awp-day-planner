@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import moment from 'moment';
-import Calendar from 'react-calendar';
-import DateDisplay from './date-display.js';
+import DateHeader from './date-header.js';
 import AgendaItem from './agenda-item.js';
 import Model from './model.js';
 
@@ -136,20 +135,12 @@ class App extends React.Component {
         return (
             <div className="app">
                 <div className="schedule-page">
-                    <header className="date-header">
-                        <DateDisplay
-                            currDate={this.state.currDate}
-                        />
-                        <Calendar 
-                            className="date-select"
-                            calendarType="US"
-                            value={this.state.currDate.toDate()}
-                            onChange={(dateObj) => this.setDate(dateObj)}
-                        />
-                    </header>
+                    <DateHeader
+                        currDate={this.state.currDate}
+                        onChange={(dateObj) => this.setDate(dateObj)}
+                    />
                     <div className="agenda">
-                        <div 
-                            className="add-agenda-item"
+                        <div className="add-agenda-item"
                             onClick={this.createAgendaItem}
                         >
                             Add New Item <span className="add-plus">+</span>
