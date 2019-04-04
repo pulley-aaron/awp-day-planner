@@ -51,8 +51,8 @@ class App extends React.Component {
         // Add agenda item
         newAgenda.unshift({
             id: moment().format() + " " + Math.floor(Math.random()*9999),
-            start: moment(),
-            end: moment().add(1, 'hour'),
+            start: moment().format(),
+            end: moment().add(1, 'hour').format(),
             description: "",
             new: 1
         });
@@ -84,9 +84,18 @@ class App extends React.Component {
         
         // Sort agenda
         newAgenda.sort((a, b) => {
-            
+            if(moment(a.start).isBefore(b.start, 'minute')) {
+                console.log(a.start + "<" + b.start + moment(a.start).isBefore(b, 'minute'));
+                return -1;
+            } else if(moment(a.start).isAfter(b.start, 'minute')) {
+                console.log(a.start + ">" + b.start + moment(a.start).isAfter(b, 'minute'));
+                return 1;
+            } else {
+                console.log(a.start + "=" + b.start);
+                return 0;
+            }
         });
-        
+        console.log(newAgenda);
         // Update model
         this.state.model.setAgendaForDay(this.state.currDate, newAgenda);
         

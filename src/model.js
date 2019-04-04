@@ -24,30 +24,30 @@ class Model {
                 agenda: [
                     {
                         id: "demo0",
-                        start: moment().hour(1).minute(30),
-                        end: moment().hour(2).minute(0),
-                        description: "Lunch with Leroy.",
+                        start: moment().hour(8).minute(30).format(),
+                        end: moment().hour(9).minute(0).format(),
+                        description: "Breakfast with Leroy.",
                         new: 0
                     },
                     {
                         id: "demo1",
-                        start: moment().hour(20).minute(30),
-                        end: moment().hour(22).minute(0),
-                        description: "Buy another cat.",
+                        start: moment().hour(13).minute(30).format(),
+                        end: moment().hour(14).minute(0).format(),
+                        description: "Lunch.",
                         new: 0
                     },
                     {
                         id: "demo2",
-                        start: moment().hour(4).minute(30),
-                        end: moment().hour(5).minute(0),
+                        start: moment().hour(15).minute(30).format(),
+                        end: moment().hour(17).minute(0).format(),
                         description: "Paint the turtle's tank. And also the turtle's log. And also the turtle.",
                         new: 0
                     },
                     {
                         id: "demo3",
-                        start: moment().hour(8).minute(30),
-                        end: moment().hour(9).minute(0),
-                        description: "Breakfast.",
+                        start: moment().hour(20).minute(30).format(),
+                        end: moment().hour(22).minute(0).format(),
+                        description: "Buy another cat.",
                         new: 0
                     }
                 ]

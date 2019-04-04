@@ -25,12 +25,12 @@ class AgendaItem extends React.Component {
         e.preventDefault();
         
         // Update main data storage
-        var yearStr = this.props.start.format("YYYY-MM-DD");
+        var yearStr = moment(this.props.start).format("YYYY-MM-DD");
         
         var newStartStr = this.startRef.current.value;
-        var newStart = moment(yearStr + " " + newStartStr, "YYYY-MM-DD h:mm a");
+        var newStart = moment(yearStr + " " + newStartStr, "YYYY-MM-DD h:mm a").format();
         var newEndStr = this.endRef.current.value;
-        var newEnd = moment(yearStr + " " + newEndStr, "YYYY-MM-DD h:mm a");
+        var newEnd = moment(yearStr + " " + newEndStr, "YYYY-MM-DD h:mm a").format();
         
         var newDesc = this.descriptionRef.current.value;
         
@@ -41,7 +41,7 @@ class AgendaItem extends React.Component {
     }
     
     deleteSelf() {
-        this.props.delete(this.props.id);
+        this.props.delete();
     }
 
     render() {
